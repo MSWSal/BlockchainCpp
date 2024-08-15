@@ -26,6 +26,14 @@ public:
         stringstream ss;
         ss<< prevHash << timestamp << data << nonce;
         return sha256(ss.str());
+    }
+
+    void mine(int diff){
+        string target(diff,'0');
+        while (hash.substr(0,diff) != target){
+            nonce++;
+            hash = calcHash();
+        }
 
     }
 };
