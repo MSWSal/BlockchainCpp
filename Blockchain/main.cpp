@@ -37,6 +37,31 @@ public:
         cout << "Mined the block" << hash << endl;
     }
 };
+
+class Blockchain {
+public:
+    Blockchain(diff):difficulty(diff){
+        chain.push_back(createGenBlock());
+    }
+
+    void addBlock(Block block){
+        block.prevHash = latestBlock().hash;
+        block.mine(diff);
+        chain.push_back(block);
+    }
+
+    Block latestBlock(){
+        return chain.back();
+    }
+
+private:
+    int difficulty;
+    vector<Block> chain;
+
+    Block createGenBlock() const{
+        return Block("Gen Block", "0");
+    }
+};
 int main()
 {
     cout << "Hello world!" << endl;
