@@ -15,7 +15,7 @@ public:
     time_t timestamp;
     int nonce;
 
-    Block(string data, string prevHash{
+    Block(string data, string prevHash){
           this->data = data;
           this->prevHash = prevHash;
           this->nonce = 0;
@@ -34,7 +34,7 @@ public:
             nonce++;
             hash = calcHash();
         }
-
+        cout << "Mined the block" << hash << endl;
     }
 };
 int main()
